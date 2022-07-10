@@ -24,5 +24,3 @@ fields:
   config:
     maxSize: 64
   label: Cover Image
-pages:
-- src/posts/just-a-quick-test.md
