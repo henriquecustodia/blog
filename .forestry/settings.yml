@@ -14,11 +14,6 @@ sections:
   new_doc_ext: md
   templates:
   - post
-- type: heading
-  label: Pages
-- type: document
-  path: src/data/navigation.json
-  label: Navigation
 upload_dir: src/images/uploads
 public_path: "/images/uploads"
 front_matter_path: ''
