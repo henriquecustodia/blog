@@ -11,10 +11,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ## Mermaid chart
 
 ```mermaid
-graph LR
+graph LR 
     A[Square Rect] -- Link text --> B((Circle))
     A --> C(Round Rect)
     B --> D{Rhombus}
+    C --> D
     C --> D
 ```
 
@@ -22,4 +23,7 @@ graph LR
 pie title NETFLIX
          "Time spent looking for movie" : 90
          "Time spent watching it" : 10
+         "Time spent watching a" : 10
+         "Time spent watching 3" : 10
+         "Time spent watching 2" : 10
 ```

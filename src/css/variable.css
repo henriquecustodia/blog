@@ -1,5 +1,8 @@
 :root {
-  --accent: #0074d9;
-  --background: #fffffe;
-  --color: rgb(41, 41, 41);
+  --accent: #00ADB5;
+  --background: #222831;
+  --color: #EEEEEE;
+  --colorOpacity8: rgba(238, 238, 238, 0.8);
+  --colorOpacity6: rgba(238, 238, 238, 0.6);
+  --colorOpacity3: rgba(238, 238, 238, 0.3);
 }

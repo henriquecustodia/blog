@@ -1,14 +1,20 @@
 ---
-title: About Aidan Charles Powell
+title: About Henrique Custódia
 layout: about.njk
-name: Aidan Charles Powell
-image: '/images/me.jpeg'
+name: Me
+image: '/images/mee.jpg'
 ---
 
-Aidan Charles Powell is a 23-year-old health centre receptionist who enjoys watching television, eating out and social media. He is generous and giving, but can also be very rude and a bit lazy.
+Hey, nice to see you here! 
 
-He is a Jedi who defines himself as straight. He has a degree in medicine. He is a vegetarian. He is obsessed with vintage dresses.
+Well, I'm a frontend deloper that love study new things. 
+It's very common find me spending weekends to study a new technology or concept. 
 
-He grew up in a middle class neighbourhood. After his mother died when he was young, he was raised by his father
+Most of time in my career I've worked with Angular - That's a really nice framework. 
 
-He is currently married to Maureen Erika Quinn. Maureen is 13 years older than him and works as a sales assistant.
+Here, I'll share all the things I've learned for all these years.
+
+Hope you enjoy!
+
+
+

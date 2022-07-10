@@ -41,17 +41,27 @@
       <meta name="description" content="{{ desc | escape }}"/>
     {% endif %}
 
-    {% if not socialImage %}
-      {% set socialImage = site.defaultSocialImage %}
+    {% if not image %}
+      {% set image = site.defaultSocialImage %}
     {% endif %}
-    {% if socialImage %}
-      <meta property="og:image" content="{{ socialImage | url | absoluteUrl(site.url) }}"/>
-      <meta name="twitter:image" content="{{ socialImage | url | absoluteUrl(site.url) }}"/>
+    {% if image %}
+      <meta property="og:image" content="{{ image | url | absoluteUrl(site.url) }}"/>
+      <meta name="twitter:image" content="{{ image | url | absoluteUrl(site.url) }}"/>
     {% endif %}
 
     {# Add mermaid -- start #}
-      <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-      <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        'theme': 'base',
+        'themeVariables': {
+          'primaryColor': '#00ADB5',
+          'lineColor': '#EEEEEE',
+          'textColor': '#EEEEEE'
+        }
+      });
+    </script>
     {# Add mermaid -- end #}
   </head>
   <body>
@@ -132,10 +142,7 @@
 
           {% if site.showFooterAttribution %}
             <p class="footer__attribution">
-          Created by
-      <a href="https://twitter.com/yinkakun" target="_blank" rel="noopener">Yinka,</a>
-       Powered by <a href="https://www.11ty.dev" target="_blank" rel="noopener">11ty,</a>
-        Checkout <a href="https://github.com/yinkakun/eleventy-duo" target="_blank" rel="noopener noreferrer">project's github repo </a>
+              Henrique Custódia 
             </p>
           {% endif %}
 
