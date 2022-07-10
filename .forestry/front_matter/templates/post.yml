@@ -19,5 +19,8 @@ fields:
   label: Permalink
   default: posts/{{ title | slug }}/index.html
   hidden: true
-pages:
-- src/posts/it-s-a-new-post.md
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: Cover Image
