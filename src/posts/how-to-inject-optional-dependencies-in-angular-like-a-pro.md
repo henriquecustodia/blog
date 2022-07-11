@@ -31,7 +31,7 @@ constructor(@Optional() @Inject(CONFIG) private config: Config) { 
 
 The solution to further improve reuse and avoid problems with maintaining this code is to create a [Factory Provider](https://angular.io/api/core/FactoryProvider) for when the CONFIG Provider does not exist, the factory will return a default instance of the configuration. That said, let's see what the implementation looks like:
 
-Note that the **deps** property receives an array with instances of decorators [Optional](https://angular.io/api/core/Optional), [SkipSelf](https://angular.io/api/ core/SkipSelf) and [Inject](https://angular.io/api/core/Inject). Basically we're telling Angular's Injector:
+Note that the **deps** property receives an array with instances of decorators [Optional](https://angular.io/api/core/Optional), [SkipSelf](https://angular.io/api/core/SkipSelf) and [Inject](https://angular.io/api/core/Inject). Basically we're telling Angular's Injector:
 
 * **Optional**: the CONFIG Provider may not exist, so don't throw errors.
 * **SkipSelf**: the Injector must look for Provider from CONFIG only in the injectors parents and not in the same Injector of the component.
