@@ -40,6 +40,7 @@
     "clean": "rm -rf ./public"
   },
   "dependencies": {
+    "medium-to-markdown": "^0.0.3",
     "remove": "^0.1.5"
   }
 }
