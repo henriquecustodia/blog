@@ -1,6 +1,6 @@
 ---
 layout: home
-title: 'About'
+title: 'Home'
 ---
 
 > Always share what you've learned 
