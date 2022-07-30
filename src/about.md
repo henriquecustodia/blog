@@ -7,15 +7,15 @@ image: '/images/mee.jpg'
 
 Hey, nice to see you here! 
 
-I'm a frontend developer that love study new things. 
-It's very common find me spending free time to study a new technology or concept. 
-I really like to go beyond my confort zone.
+I'm a front-end developer that loves to study new things. 
+It's very common to find me spending free time studying a new technology or concept. 
+I do like to go beyond my comfort zone.
 
-Most of projects I've worked with Angular. I've achieved a lot of knowledge in this framework and its advanced patterns.  
+For most of the projects in my career, I dealt with Angular. I achieved a lot of knowledge in this framework and its advanced patterns.  
 
-Here, I'll share all the things I've learned for all these years.
-
-Hope you enjoy!
+Here, I'll share all the things I learned all these years.
+ 
+Hope you enjoy it!
 
 
 
