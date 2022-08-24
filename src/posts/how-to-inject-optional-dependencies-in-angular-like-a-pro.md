@@ -11,24 +11,41 @@ image: "/images/uploads/gUh1WrWMOe5UMK56GY17eA.jpeg"
 ---
 Usually, when I create components in Angular, I need to provide a way to customize how Angular's logic will work. A good way to do this is to create a configuration class with some properties that will dictate how the logic will work. So, we could use this configuration class as follows in a component:
 
-    // Config Class
-    export class Config {
-      show: boolean = true;
-    }
-    
-    // Component that will use the config class
-    @Component({ 
-      selector: 'component',
-      template: '<div *ngIf="show">Can you see me?</div>'
-    })
-    export class Component {  
-      @Input() config: Config = new Config(); // instancia a classe para evitar erros
-      
-      show: boolean = this.config.show;
-    }
-    
-    // Using both
-    <component [config]="config"><component>
+\`\`\`js
+
+// Config Class
+
+export class Config {
+
+  show: boolean = true;
+
+}
+
+// Component that will use the config class
+
+@Component({ 
+
+  selector: 'component',
+
+  template: '<div *ngIf="show">Can you see me?</div>'
+
+})
+
+export class Component {  
+
+  @Input() config: Config = new Config(); // instancia a classe para evitar erros
+
+  
+
+  show: boolean = this.config.show;
+
+}
+
+// Using both
+
+<component \[config\]="config"><component>
+
+\`\`\`
 
 Passing the configuration via [Input](https://angular.io/api/core/Input) is a very good way to customize the behavior of a component. However, there are cases where we need to use a certain component several times by the application, and replicating the same configuration to all the places the component is being used will be bad for the application maintenance. A good solution for this is to register the configuration class as a [Provider](https://angular.io/api/core/Provider):
 
