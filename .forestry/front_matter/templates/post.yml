@@ -24,3 +24,5 @@ fields:
   config:
     maxSize: 64
   label: Cover Image
+pages:
+- src/posts/clean-code.md
