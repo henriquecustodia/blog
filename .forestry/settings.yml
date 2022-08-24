@@ -4,6 +4,11 @@ auto_deploy: false
 admin_path: ''
 webhook_url: 
 sections:
+- type: document
+  path: src/drafts
+  label: Drafts
+  match: "**/*"
+  read_only: false
 - type: heading
   label: Posts
 - type: directory
