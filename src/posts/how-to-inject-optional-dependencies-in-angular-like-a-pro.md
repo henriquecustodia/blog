@@ -13,7 +13,6 @@ Usually, when I create components in Angular, I need to provide a way to customi
 
 ```js
 // Config Class
-
 export class Config {
   show: boolean = true;
 }
