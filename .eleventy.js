@@ -18,9 +18,9 @@ const manifestPath = path.resolve(
 
 const manifest = isDev
   ? {
-      'main.js': '/assets/main.js',
-      'main.css': '/assets/main.css',
-    }
+    'main.js': '/assets/main.js',
+    'main.css': '/assets/main.css',
+  }
   : JSON.parse(fs.readFileSync(manifestPath, { encoding: 'utf8' }));
 
 module.exports = function (eleventyConfig) {
@@ -108,7 +108,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter('pageTags', (tags) => {
-    const generalTags = ['all', 'nav', 'post', 'posts'];
+    const generalTags = ['all', 'nav', 'post', 'posts', 'draft'];
 
     return tags
       .toString()
@@ -118,8 +118,16 @@ module.exports = function (eleventyConfig) {
       });
   });
 
-  eleventyConfig.addTransform('htmlmin', function(content, outputPath) {
-    if ( outputPath && outputPath.endsWith(".html") && isProd) {
+  eleventyConfig.addFilter('removeDraftPosts', (posts) => {
+    return posts
+      .filter(post => {
+        const isDraft = post.data.tags.includes('draft');
+        return !isDraft;
+      });
+  });
+
+  eleventyConfig.addTransform('htmlmin', function (content, outputPath) {
+    if (outputPath && outputPath.endsWith(".html") && isProd) {
       return htmlmin.minify(content, {
         removeComments: true,
         collapseWhitespace: true,

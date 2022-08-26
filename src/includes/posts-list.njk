@@ -1,5 +1,5 @@
 <ul class="post-list">
-  {% for post in postslist | reverse %}
+  {% for post in postslist | removeDraftPosts | reverse %}
     <li class="post-list__item">
       <div>
         <div class="post-list__meta">
