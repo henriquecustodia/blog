@@ -91,11 +91,6 @@ ul {
   list-style-position: inside;
 }
 
-b,
-strong {
-  font-weight: 500;
-}
-
 table {
   border-collapse: collapse;
   caption-side: bottom;
@@ -147,11 +142,14 @@ h4 + p {
 
 iframe,
 audio,
-video,
-img {
+video {
   width: 100%;
   max-width: 100%;
   margin-top: 1rem;
+}
+
+img {
+  margin: 0 auto;
 }
 
 blockquote {
