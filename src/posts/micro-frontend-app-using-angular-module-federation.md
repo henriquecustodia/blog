@@ -3,7 +3,6 @@ permalink: posts/{{ title | slug }}/index.html
 title: Micro Frontend App using Angular Module Federation
 date: 2022-08-26T00:00:00-03:00
 tags:
-- draft
 - angular
 description: ''
 image: "/images/uploads/nathan-duck-pzruju9v-oc-unsplash-1.jpg"
