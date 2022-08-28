@@ -219,7 +219,7 @@ To finish the app, let's change de **AppComponent's template** to something bett
 
 ### Time to see the result
 
-Well, now it's time to see the the micro frontend application running 😎
+Well, now it's time to see the the micro frontend application running. 😎
 
 Run the command below on the terminal: 
 
