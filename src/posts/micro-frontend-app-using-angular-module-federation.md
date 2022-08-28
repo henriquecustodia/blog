@@ -9,30 +9,39 @@ description: ''
 image: "/images/uploads/nathan-duck-pzruju9v-oc-unsplash-1.jpg"
 
 ---
-Here I'm again after some time without publishing anything.
-
 > This post was inspired by [Briebug's post](https://blog.briebug.com/blog/micro-frontends-angular)
 
-I've been listening much about the micro frontend concept lately. That's a really cool way to split a big application (monolith) into small pieces that can connect with each other. It's perfect for companies that need to work with specific squads at specific parts of the application, like a cart module, for example.
+I've been listening much about the micro frontend concept lately. A lot of companies are adopting this solution as a way to make the apps smallers and easier to deploy. 
+
+### But, what's micro frontend? 
+
+According to [micro-frontends](https://micro-frontends.org/ "https://micro-frontends.org/") website: 
+
+> The idea behind Micro Frontends is to think about a website or web app as **a composition of features** which are owned by **independent teams**. Each team has a **distinct area of business** or **mission** it cares about and specialises in. A team is **cross functional** and develops its features **end-to-end**, from database to user interface.
+
+That's a really cool! With micro frontend we can split an application into smaller pieces that focus on solve a specific problem. It's perfect for companies that need to work with dedicated squads at specific parts of the product, like a cart or checkout module, for instance.
 
 This approach allows the squads to work with individual deploys and different stacks, without worrying about other projects that compose the entire solution.
 
-Basically, we'll just need to have two kinds of applications:
+### What do we need to create a micro frontend app?
 
-* **host**: It's an application that will load the remote applications.
-* **remote:** It's an application that'll be loaded by the host application.
+To compose a micro frontend app, we'll just need to have two kinds of applications:
 
-That's cool, right?
+##### Host
 
-Well, after that brief explanation about the micro frontend concept, let me introduce the [Angular Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation).
+It's an application that will load the remote applications. We can have only one host app. This app can be called as **shell** as well. 
 
-This module allows us to create micro frontend applications easily.
+##### Remote
+
+It's an application that'll be loaded by the host application. We can have several these apps. Generally, remote apps are small pieces of an application. Relevant modules that needs some more attention and care. 
+
+### Nice! And what do we're going to do?
+
+In this post we're going to do a micro frontend application using the amazing [Angular Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation) module and [Nx](https://nx.dev/) to create and manage the project's workspace.
 
 > If you've never heard about Module Federation, [check out this post](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669) .
 
-# Let's create the project
-
-We'll use [Nx](https://nx.dev/) to create the workspace project and all applications.
+### Let's create the project then
 
 On the terminal, just type the command below and generate an Angular application.
 
@@ -40,29 +49,31 @@ On the terminal, just type the command below and generate an Angular application
 npx create-nx-workspace@latest
 ```
 
-On the _application name_ question, set **host** as a name. That'll be the host application.
+On the _"application name"_ question, set **host** as a name. That'll be the host application.
 
-After the Nx script ran, you should have one app called **host** inside the project's workspace
+After that, you should have one app called **host** inside the project's workspace.
 
 ![](/images/uploads/img1.PNG)
 
-Now, let's create a new app called **remote**
+Now, let's create a new app called **remote.**
 
 ```shell
-nx generate @nrwl/angular:application remote --port=5000
+nx generate @nrwl/angular:application remote --port=5001
 ```
 
-If everything worked fine, you'll have a new app inside the workspace
+If everything worked fine, you'll have a new app inside the workspace.
 
 ![](/images/uploads/remote-app.png)
 
-All good? Perfect! In the next steps, we're going to transform these two apps into an amazing micro frontend solution :D
+All good? 
 
-# Setting the Angular Module Federation
+Perfect! In the next steps, we're going to transform these two apps into an amazing micro frontend solution.
+
+### Setting the Angular Module Federation
 
 It's time to add the Angular Module Federation to our project.
 
-Let's type the following command on terminal
+Let's type the following command on terminal:
 
 ```shell
 nx generate @nrwl/angular:setup-mf host --mf-type=host --routing
@@ -82,7 +93,7 @@ module.exports = {
 * The **bootstrap** file contains the main's content file.
 * The **main** file loads the **bootstrap** file using an async import
 
-The **host** app has become a shell app now. It means this app will be able to load remote apps.
+The **host** app has become a shell app now - it means this app will be able to load remote apps.
 
 Good, let's transform the **remote** app into a micro frontend app as well.
 
@@ -92,7 +103,7 @@ Run the following command on the terminal:
 nx generate @nrwl/angular:setup-mf remote --mf-type=remote --host=host --routing
 ```
 
-Did you run? Perfect! Then, just notice the **remote** app. Inside the app folder, we have now a new folder called **remote-entry,** and inside of it, there's an Angular module called **RemoteEntryModule**. This module will allow us to load the remote app inside the host app.
+Now, just notice the **remote** app. Inside the app folder, we have now a new folder called **remote-entry,** and inside of it, there's an Angular module called **RemoteEntryModule**. This module will allow us to load the remote app inside the host app.
 
 ![](/images/uploads/remote-entry-module.png)
 
@@ -117,7 +128,11 @@ export class RemoteEntryModule {}
 
 The **RemoteEntryComponent** will be the component that'll be loaded inside the **host** app.
 
-I think that'd be good to make some changes to this component for it to look nice. Don't worry, we'll just add some style to this.
+### Add some style to the remote component [🐉](https://emojipedia.org/dragon/)
+
+I think that'd be good to make some changes to this component for it to look nice. 
+
+Don't worry! We'll just add some style to this.
 
 ```ts
 @Component({
@@ -139,7 +154,11 @@ I think that'd be good to make some changes to this component for it to look nic
 export class RemoteEntryComponent {}
 ```
 
-Coool! Now, inside the **host** app let's add a route to load the **remote** app.
+Coool! 
+
+### Let's add a route to load de remote app
+
+Now, inside the **host** app, let's add a route to load the **remote** app.
 
 Add a file called **app-routing.module.ts** inside the app folder, with the following content:
 
@@ -177,7 +196,9 @@ Oh! We can't forget to import the routing module into the AppModule.
 export class AppModule {}
 ```
 
-And to finish our app, let's change de **AppComponent's template** to something nicer 
+### Almost there! 
+
+To finish the app, let's change de **AppComponent's template** to something better
 
 ```ts
 <div class="container">
@@ -189,9 +210,18 @@ And to finish our app, let's change de **AppComponent's template** to something 
 </div>
 ```
 
-Well, now it's time to run our micro frontend application 😎
+```css
+.container {
+    border: 1px solid red;
+    padding: 24px;
+}
+```
 
-Run the command below on the terminal 
+### Time to see the result
+
+Well, now it's time to see the the micro frontend application running 😎
+
+Run the command below on the terminal: 
 
 ```ts
 nx run-many --target=serve --all 
@@ -203,8 +233,22 @@ Accessing the **host app** we'll see the following page:
 
 When we click on **load the remote app** link, the **host app** will load the **remote app** using the **/remote-app** route 
 
-![](/images/uploads/remote-app-loaded.png)
+![](/images/uploads/ezgif-5-2222.gif)
 
-That's awesome, isn't it? With a few steps, we build a micro frontend app. 
+We made a micro frontend app! That's awesome how easy it was, isn't it? 
 
-***
+### Curious about the code?
+
+You can find the source code of this app at [my github](https://github.com/henriquecustodia/mfe-post).
+
+If you're curious to see the app running on production, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!  
+
+### That's all
+
+I've spent some time writing this post, then, I really hope that you've enjoyed! 
+
+Don't hesitate to share this post with yours friends - I know that content can be helpful for lots of people. 
+
+Thank you for the reading. 😄
+
+Bye! 👋🏼
