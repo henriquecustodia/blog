@@ -11,15 +11,15 @@ image: "/images/uploads/nathan-duck-pzruju9v-oc-unsplash-1.jpg"
 ---
 > This post was inspired by [Briebug's post](https://blog.briebug.com/blog/micro-frontends-angular)
 
-I've been listening much about the micro frontend concept lately. A lot of companies are adopting this solution as a way to make the apps smallers and easier to deploy. 
+I've been listening much about the micro frontend concept lately. A lot of companies are adopting this solution as a way to make the apps smaller and easier to deploy.
 
-### But, what's micro frontend? 
+### But, what's micro frontend?
 
-According to [micro-frontends](https://micro-frontends.org/ "https://micro-frontends.org/") website: 
+According to the [micro-frontends](https://micro-frontends.org/ "https://micro-frontends.org/") website:
 
 > The idea behind Micro Frontends is to think about a website or web app as **a composition of features** which are owned by **independent teams**. Each team has a **distinct area of business** or **mission** it cares about and specialises in. A team is **cross functional** and develops its features **end-to-end**, from database to user interface.
 
-That's a really cool! With micro frontend we can split an application into smaller pieces that focus on solve a specific problem. It's perfect for companies that need to work with dedicated squads at specific parts of the product, like a cart or checkout module, for instance.
+That's cool! With a micro frontend, we can split an application into smaller pieces that focus on solving a specific problem. It's perfect for companies that need to work with dedicated squads at specific parts of the product, like a cart or checkout module, for instance.
 
 This approach allows the squads to work with individual deploys and different stacks, without worrying about other projects that compose the entire solution.
 
@@ -27,17 +27,17 @@ This approach allows the squads to work with individual deploys and different st
 
 To compose a micro frontend app, we'll just need to have two kinds of applications:
 
-##### Host
+#### Host
 
-It's an application that will load the remote applications. We can have only one host app. This app can be called as **shell** as well. 
+It's an application that will load the remote applications. We can have only one host app. This app can be called a **shell** as well.
 
-##### Remote
+#### Remote
 
-It's an application that'll be loaded by the host application. We can have several these apps. Generally, remote apps are small pieces of an application. Relevant modules that needs some more attention and care. 
+It's an application that'll be loaded by the host application. We can have several of these apps. Generally, remote apps are small pieces of an application. Relevant modules that need some more attention and care.
 
 ### Nice! And what do we're going to do?
 
-In this post we're going to do a micro frontend application using the amazing [Angular Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation) module and [Nx](https://nx.dev/) to create and manage the project's workspace.
+In this post, we're going to do a micro frontend application using the amazing [Angular Module Federation](https://www.npmjs.com/package/@angular-architects/module-federation) module and [Nx](https://nx.dev/) to create and manage the project's workspace.
 
 > If you've never heard about Module Federation, [check out this post](https://medium.com/swlh/webpack-5-module-federation-a-game-changer-to-javascript-architecture-bcdd30e02669) .
 
@@ -49,7 +49,7 @@ On the terminal, just type the command below and generate an Angular application
 npx create-nx-workspace@latest
 ```
 
-On the _"application name"_ question, set **host** as a name. That'll be the host application.
+On the _"application name"_ question, set the **host** as a name. That'll be the host application.
 
 After that, you should have one app called **host** inside the project's workspace.
 
@@ -65,7 +65,7 @@ If everything worked fine, you'll have a new app inside the workspace.
 
 ![](/images/uploads/remote-app.png)
 
-All good? 
+All good?
 
 Perfect! In the next steps, we're going to transform these two apps into an amazing micro frontend solution.
 
@@ -73,7 +73,7 @@ Perfect! In the next steps, we're going to transform these two apps into an amaz
 
 It's time to add the Angular Module Federation to our project.
 
-Let's type the following command on terminal:
+Let's type the following command on the terminal:
 
 ```shell
 nx generate @nrwl/angular:setup-mf host --mf-type=host --routing
@@ -81,7 +81,7 @@ nx generate @nrwl/angular:setup-mf host --mf-type=host --routing
 
 The following changes have been made inside the **host** app:
 
-* The file called **module-federation.config**  has been created
+* The file is called **module-federation. config**  has been created
 
 ```js
 module.exports = {
@@ -93,7 +93,7 @@ module.exports = {
 * The **bootstrap** file contains the main's content file.
 * The **main** file loads the **bootstrap** file using an async import
 
-The **host** app has become a shell app now - it means this app will be able to load remote apps.
+The **host** app has become a shell app now - which means this app will be able to load remote apps.
 
 Good, let's transform the **remote** app into a micro frontend app as well.
 
@@ -128,9 +128,9 @@ export class RemoteEntryModule {}
 
 The **RemoteEntryComponent** will be the component that'll be loaded inside the **host** app.
 
-### Add some style to remote component [🐉](https://emojipedia.org/dragon/)
+### Add some style to the remote component [🐉](https://emojipedia.org/dragon/)
 
-I think that'd be good to make some changes to this component for it to look nice. 
+I think that'd be good to make some changes to this component for it to look nice.
 
 Don't worry! We'll just add a simple style to this.
 
@@ -154,7 +154,7 @@ Don't worry! We'll just add a simple style to this.
 export class RemoteEntryComponent {}
 ```
 
-Coool! 
+Cool!
 
 ### Let's add a route to load de remote app
 
@@ -196,7 +196,7 @@ Oh! We can't forget to import the routing module into the AppModule.
 export class AppModule {}
 ```
 
-### Almost there! 
+### Almost there!
 
 To finish the app, let's change de **AppComponent's template** to something better
 
@@ -219,9 +219,9 @@ To finish the app, let's change de **AppComponent's template** to something bett
 
 ### Time to see the result
 
-Well, now it's time to see the the micro frontend application running. 😎
+Well, now it's time to see the micro frontend application running. 😎
 
-Run the command below on the terminal: 
+Run the command below on the terminal:
 
 ```ts
 nx run-many --target=serve --all 
@@ -231,23 +231,23 @@ Accessing the **host app** we'll see the following page:
 
 ![](/images/uploads/hpst-app-page.png)
 
-When we click on **load the remote app** link, the **host app** will load the **remote app** using the **/remote-app** route 
+When we click on the **load the remote app** link, the **host app** will load the **remote app** using the **/remote-app** route
 
 ![](/images/uploads/ezgif-5-2222.gif)
 
-We made a micro frontend app! That's awesome how easy it was, isn't it? 
+We made a micro frontend app! That's awesome how easy it was, isn't it?
 
 ### Curious about the code?
 
-You can find the source code of this app at [my github](https://github.com/henriquecustodia/mfe-post).
+You can find the source code of this app on [my ](https://github.com/henriquecustodia/mfe-post)Github.
 
-If you're curious to see the app running on production, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!  
+If you're curious to see the app running on production, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!
 
 ### That's all
 
-I've spent some time writing this post, then, I really hope that you've enjoyed! 
+I've spent some time writing this post, then, I hope that you've enjoyed it!
 
-Don't hesitate to share this post with yours friends - I know that content can be helpful for lots of people. 
+Don't hesitate to share this post with your friends - I know that content can be helpful for lots of people.
 
 Thank you for the reading. 😄
 
