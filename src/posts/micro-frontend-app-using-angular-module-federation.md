@@ -13,7 +13,7 @@ Here I'm again after some time without publishing anything.
 
 > This post was inspired by [Briebug's post](https://blog.briebug.com/blog/micro-frontends-angular)
 
-I've been listening much about the micro frontend concept lately. That's a really cool way to split a big application (monolith) into small pieces that can connect with each other. It's perfect for companies that need to work with specific squads at specific parts of the application, like a cart module, for example. 
+I've been listening much about the micro frontend concept lately. That's a really cool way to split a big application (monolith) into small pieces that can connect with each other. It's perfect for companies that need to work with specific squads at specific parts of the application, like a cart module, for example.
 
 This approach allows the squads to work with individual deploys and different stacks, without worrying about other projects that compose the entire solution.
 
@@ -82,21 +82,21 @@ module.exports = {
 * The **bootstrap** file contains the main's content file.
 * The **main** file loads the **bootstrap** file using an async import
 
-The **host** app has become a shell app now. It means this app will be able to load remote apps. 
+The **host** app has become a shell app now. It means this app will be able to load remote apps.
 
 Good, let's transform the **remote** app into a micro frontend app as well.
 
-Run the following command on the terminal: 
+Run the following command on the terminal:
 
 ```shell
 nx generate @nrwl/angular:setup-mf remote --mf-type=remote --host=host --routing
 ```
 
-Did you run? Perfect! Then, just notice the **remote** app. Inside the app folder, we have now a new folder called **remote-entry,** and inside of it, there's an Angular module called **RemoteEntryModule**. This module will allow us to load the remote app inside the host app. 
+Did you run? Perfect! Then, just notice the **remote** app. Inside the app folder, we have now a new folder called **remote-entry,** and inside of it, there's an Angular module called **RemoteEntryModule**. This module will allow us to load the remote app inside the host app.
 
 ![](/images/uploads/remote-entry-module.png)
 
-The **entry.module.ts** file should contain this content: 
+The **entry.module.ts** file should contain this content:
 
 ```ts
 @NgModule({
@@ -115,7 +115,7 @@ The **entry.module.ts** file should contain this content:
 export class RemoteEntryModule {}
 ```
 
-The **RemoteEntryComponent** will be the component that'll be loaded inside the **host** app. 
+The **RemoteEntryComponent** will be the component that'll be loaded inside the **host** app.
 
 I think that'd be good to make some changes to this component for it to look nice. Don't worry, we'll just add some style to this.
 
@@ -156,4 +156,35 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule { } 	
+```
+
+> Have you noticed? The route **remote-app** will load the **remote/Module** path. It's a file that webpack will create using the configuration file **module-federation.config** inside **remote app**.
+
+Oh! We can't forget to import the routing module into the AppModule.
+
+```ts
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule // here
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+And to finish our app, let's change de **AppComponent's template** to something nicer 
+
+```ts
+<div class="container">
+    <div>I'm the host app</div>
+
+    <a [routerLink]="['/remote-app']">load the remote app</a>
+    
+    <router-outlet></router-outlet> // the remote app comes here
+</div>
 ```
