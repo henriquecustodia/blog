@@ -128,7 +128,7 @@ export class RemoteEntryModule {}
 
 The **RemoteEntryComponent** will be the component that'll be loaded inside the **host** app.
 
-### Add some style to the remote component [🐉](https://emojipedia.org/dragon/)
+### Add some style to remote component [🐉](https://emojipedia.org/dragon/)
 
 I think that'd be good to make some changes to this component for it to look nice.
 
