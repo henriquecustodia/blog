@@ -3,7 +3,6 @@ permalink: posts/{{ title | slug }}/index.html
 title: Creating a Micro Frontend App with Angular Module Federation
 date: 2022-08-26T00:00:00-03:00
 tags:
-- draft
 - angular
 description: 'Let''s create a micro frontend app with Angular Module Federation and
   Nx! '
