@@ -239,7 +239,7 @@ We made a micro frontend app! That's awesome how easy it was, isn't it?
 
 ### Curious about the code?
 
-You can find the source code of this app on [my ](https://github.com/henriquecustodia/mfe-post)Github.
+You can find the source code of this app on [my Github](https://github.com/henriquecustodia/mfe-post).
 
 If you're curious to see the app running on production, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!
 
