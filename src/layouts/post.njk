@@ -9,48 +9,47 @@ layout: base.njk
       <time datetime="{{ page.date | htmlDateString }}">
         {{ page.date | readableDate }}
       </time>
-      <span> | </span>
+      <span>
+        |
+      </span>
       <span>{{ content | readingTime }} read</span>
     </div>
   </header>
-
   {%- if image %}
     <img src="{{ image }}" alt="{{ title }} image">
-  {% endif %}
-  
-  <main class="post__content">
-    {{ content | safe }}
-  </main>
+    {% endif %}
+    <main class="post__content">
+      {{ content | safe }}
+    </main>
 
-  <aside class="post__aside">
-    <div class="post__tags">
-      {% for tag in tags | pageTags %}
-        {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-        <a href="{{ tagUrl | url }}">#{{ tag }}</a>
-      {% endfor %}
-    </div>
+    <a href="https://www.buymeacoffee.com/henricustodia" target="_blank">
+      <img
+        src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+        alt="Buy Me A Coffee"
+        style="height: 60px !important;width: 217px !important; margin: 0 auto;"></a>
 
-    <nav class="post__pagination">
-      {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
-      {%- if nextPost %}
-
-        <a href="{{ nextPost.url | url }}">
-          <span>←</span>
-          <span>{{ nextPost.data.title }}</span>
-        </a>
-
-      {% endif %}
-
-      {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
-      {%- if previousPost %}
-
-        <a href="{{ previousPost.url | url }}">
-          <span>{{ previousPost.data.title }}</span>
-          <span>→</span>
-        </a>
-
-      {% endif %}
-    </nav>
-  </aside>
-
-</article>
+      <aside class="post__aside">
+        <div class="post__tags">
+          {% for tag in tags | pageTags %}
+            {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+            <a href="{{ tagUrl | url }}">#{{ tag }}</a>
+          {% endfor %}
+        </div>
+        <nav class="post__pagination">
+          {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+          {%- if nextPost %}
+            <a href="{{ nextPost.url | url }}">
+              <span>←</span>
+              <span>{{ nextPost.data.title }}</span>
+            </a>
+          {% endif %}
+          {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+          {%- if previousPost %}
+            <a href="{{ previousPost.url | url }}">
+              <span>{{ previousPost.data.title }}</span>
+              <span>→</span>
+            </a>
+          {% endif %}
+        </nav>
+      </aside>
+    </article>
