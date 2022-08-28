@@ -188,3 +188,23 @@ And to finish our app, let's change de **AppComponent's template** to something 
     <router-outlet></router-outlet> // the remote app comes here
 </div>
 ```
+
+Well, now it's time to run our micro frontend application 😎
+
+Run the command below on the terminal 
+
+```ts
+nx run-many --target=serve --all 
+```
+
+Accessing the **host app** we'll see the following page:
+
+![](/images/uploads/hpst-app-page.png)
+
+When we click on **load the remote app** link, the **host app** will load the **remote app** using the **/remote-app** route 
+
+![](/images/uploads/remote-app-loaded.png)
+
+That's awesome, isn't it? With a few steps, we build a micro frontend app. 
+
+***
