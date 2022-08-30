@@ -63,7 +63,7 @@ nx generate @nrwl/angular:application remote --port=5001
 
 If everything worked fine, you'll have a new app inside the workspace.
 
-![](/images/uploads/remote-app.png)
+![](/images/uploads/remote-app-1.png)
 
 All good?
 
@@ -81,7 +81,7 @@ nx generate @nrwl/angular:setup-mf host --mf-type=host --routing
 
 The following changes have been made inside the **host** app:
 
-* The file is called **module-federation. config**  has been created
+* A file called **module-federation. config**  has been created
 
 ```js
 module.exports = {
@@ -241,7 +241,7 @@ We made a micro frontend app! That's awesome how easy it was, isn't it?
 
 You can find the source code of this app on [my Github](https://github.com/henriquecustodia/mfe-post).
 
-If you're curious to see the app running on production, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!
+If you're curious to see the app running, I've deployed this to production.  [Check out the app here](https://henriquecustodia-mf-host.netlify.app/)!
 
 ### That's all
 
