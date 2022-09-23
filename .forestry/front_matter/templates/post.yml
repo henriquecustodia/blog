@@ -25,4 +25,5 @@ fields:
     maxSize: 64
   label: Cover Image
 pages:
+- src/posts/let-s-talk-about-standalone-components-in-angular.md
 - src/posts/micro-frontend-app-using-angular-module-federation.md
