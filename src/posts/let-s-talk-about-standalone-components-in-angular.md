@@ -1,12 +1,13 @@
 ---
 permalink: posts/{{ title | slug }}/index.html
-title: Let's talk about standalone components in Angular
-date: 
+title: 'Angular Standalone Components: Say Goodbye To NgModules'
+date: 2022-09-25T05:00:00-03:00
 tags:
 - angular
-- draft
-description: ''
-image: ''
+description: In this post, we will see how to use the Angular V14 feature called "standalone
+  component"! That feature will make Angular applications easier and simpler to create
+  and understand. Say hello to the future without NgModules!
+image: "/images/uploads/ali-kokab-yv2hzor8jaa-unsplash.jpg"
 
 ---
 A few weeks ago Angular v14 was released with a lot of new amazing features.  And, since then, I've spent some time studying and applying these to my projects.
