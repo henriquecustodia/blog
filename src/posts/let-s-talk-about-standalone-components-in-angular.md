@@ -11,11 +11,13 @@ image: ''
 ---
 A few weeks ago Angular v14 was released with a lot of new amazing features.  And, since then, I've spent some time studying and applying these to my projects.
 
-It's hard not to admit how much excited I'm feeling about the standalone component feature. This feature, in my opinion, is the most relevant improvement that Anguhas had in ages. That will change how we develop our applications and, mainly, that will turn the components simpler to read and write. In the future, probably, we won't need NgModules anymore.
+It's hard not to admit how much excited I'm feeling about the standalone component feature. This feature, in my opinion, is the most relevant improvement that Angular has had over the years. That will change how we develop our applications and, mainly, that will turn the components simpler to read and write. In the future, probably, we won't need NgModules anymore.
 
 ### What's a standalone component?
 
-Well, the standalone component is just a common Angular component that we already know but with further features. That's a mixing of a component and NgModule. Therefore, we don't need to import our component into a NgModule to use it, because this component is self-contained.
+Well, the standalone component is just a common Angular component that we already know but with further features. That's a mixing of a component and NgModule.
+
+Therefore, we don't need to import our component into a NgModule to use it, because this kind of component is self-contained.
 
 Let's see a simple code to understand how to use it.
 
@@ -31,16 +33,16 @@ Let's see a simple code to understand how to use it.
 ...
 ```
 
-The code above has the new properties called `standalone` and `imports`.
+The code above has two new properties called `standalone` and `imports`.
 
 But, what's it means?
 
 * **standalone:** It marks the component as a standalone component and enables all features related to it.
-* **imports:** It allows a component to import Directives, Pipes, Others Component, and existing NgModules.
+* **imports:** It allows a component to import Directives, Pipes, Other Components, and existing NgModules.
 
-### Oh, can I import a component directly into another component?
+### Oh, can we import a component directly into another component?
 
-Exactly! We don't need to use a NgModule just to register components anymore. With standalone components, we can import a component into another component, and **Aha!** it just works.
+Yes, we can! We don't need to create a NgModule just to register components anymore. With standalone components, we can import a component into another component, and **Aha!** it just works.
 
 Let's see a quick example of it.
 
@@ -71,7 +73,7 @@ The result will be:
 
 ![](/images/uploads/app-root-template-rendered.PNG)
 
-In another way using NgModule we'd have to create the following code: 
+In another way using NgModule we'd have to create the following code:
 
 ```ts
 @Component({
@@ -101,15 +103,15 @@ In another way using NgModule we'd have to create the following code:
 })
 ```
 
-It's much more verbose, isn't it? 
+It's much more verbose, isn't it?
 
 The new approach with standalone components allows us to make Angular components simpler and more straightforward.
 
 ### And, how to bootstrap an app using only standalone components?
 
-With this new approach, we have a new function called `bootstrapApplication`. 
+With this new approach, we have a new function called `bootstrapApplication`.
 
-This function allows us to bootstrap an application using a standalone component directly, no more an old NgModule as we've known.
+This function allows Angular to bootstrap an application using a standalone component directly, no more a NgModule as we've known.
 
 ```ts
 bootstrapApplication(AppComponent) 
@@ -121,11 +123,11 @@ bootstrapApplication(AppComponent)
 
 With this approach, we need to change how we set the providers in the application as well. Let's see this in the next topic.
 
-### Setting a provider to the application 
+### Setting providers to the application
 
 Yep, a lot of things have changed! 😁
 
-This function has a second parameter that allow us to add some configuration to the application.  
+The  `bootstrapApplication` function has a second parameter that allows us to add some configuration to the application.
 
 Let's see the typescript declaration of it.
 
@@ -154,7 +156,7 @@ bootstrapApplication(LayoutComponent, { providers })
 	.catch(() => { });
 ```
 
-And to use the registered provider it's the same way as we've already known. 
+And to use the registered provider is the same way as we've already known.
 
 ```ts
 export class LayoutComponent {
@@ -168,15 +170,15 @@ Nothing that new so far, just the way we register the providers have changed.
 
 ### What about routes, how can we register the app routes?
 
-I was waiting for this question! It's changed as well. 😄 But, in my opinion, the approach is simpler than before.
+I was waiting for this question! It's changed as well. 😄
 
 To register the app routes we have to use the new function called`importProvidersFrom`. Let's see what [Angular documentation](https://angular.io/api/core/importProvidersFrom) says about it.
 
-> Collects providers from all NgModules and standalone components, including transitively imported. 
+> Collects providers from all NgModules and standalone components, including transitively imported.
 
-Basically, this function will extract all providers of the NgModule and set them to the provider's app array. 
+This function will extract all providers of the NgModule and set them to the provider's app array.
 
-Let's see how to configure the app routes: 
+Let's see how to configure the app routes:
 
 ```ts
 const ROUTES: Route[] = [
@@ -220,17 +222,23 @@ It's become easier to configure the app router as we can load standalone compone
 
 ### 💭💭
 
-I think the Angular v14 is just the beginning of something bigger and better! Angular has changed a lot over the last few years and it's exciting. 
+I think the Angular v14 is just the beginning of something bigger and better! Angular has changed a lot over the last few years and it's exciting.
 
-Standalone components allow us to create simpler applications in a faster way. This new feature also can make Angular an easier framework to learn, as we won't, in the future,  need to use NgModule anymore - I hope so 😆. 
+Standalone components allow us to create simpler applications in a faster way. This new feature also can make Angular an easier framework to learn, as we won't, in the future,  need to use NgModule anymore - I hope so 😆.
+
+> For more information about standalone components and all their features, check out the [official documentation](https://angular.io/guide/standalone-components).
 
 ***
 
-### That's all
+### 👨‍💻
+
+You can check out the code of this post on my [GitHub](https://github.com/henriquecustodia/standalone-components-example).
+
+### That's all!
 
 I've spent some time writing this post, then, I hope that you enjoyed it!
 
-If you liked it, give it some claps/likes to this post, it'll help me a lot! 👏🏼❤
+If you liked it, give it some claps/likes to this post; it'll help me a lot! 👏🏼❤
 
 Thank you for the reading. 😄
 
