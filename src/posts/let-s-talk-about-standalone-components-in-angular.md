@@ -10,13 +10,13 @@ description: In this post, we will see how to use the Angular V14 feature called
 image: "/images/uploads/ali-kokab-yv2hzor8jaa-unsplash.jpg"
 
 ---
-A few weeks ago Angular v14 was released with a lot of new amazing features.  And, since then, I've spent some time studying and applying these to my projects.
+A few months ago, Angular v14 was released with a lot of amazing new features. And, since then, I've spent some time studying and applying these to my projects.
 
-It's hard not to admit how much excited I'm feeling about the standalone component feature. This feature, in my opinion, is the most relevant improvement that Angular has had over the years. That will change how we develop our applications and, mainly, that will turn the components simpler to read and write. In the future, probably, we won't need NgModules anymore.
+It's hard not to admit how excited I'm feeling about the standalone component feature. This feature, in my opinion, is the most relevant improvement that Angular has had over the years. That will change how we develop our applications, and, mainly, that will make the components simpler to read and write. In the future, we probably won't need NgModules anymore.
 
 ### What's a standalone component?
 
-Well, the standalone component is just a common Angular component that we already know but with further features. That's a mixing of a component and NgModule.
+Well, the standalone component is just a common Angular component that we already know but with further features. That is a combination of a component and a NgModule.
 
 Therefore, we don't need to import our component into a NgModule to use it, because this kind of component is self-contained.
 
