@@ -128,6 +128,20 @@ contructor(@Optional private service MyOptionalService) { }
 
 In my opinion, this new approach is much more simple to understand. Mainly, for those who are just starting to work with Angular.
 
-### Should we stop to use class constructors to inject?
+### Should we stop to use class constructors with DI?
 
-Well, I don't think so. Although the inject function is a great feature, it's just a new approach. You don't need to refactor your projects because of it.  
+Well, I don't think so. 
+
+Although the inject function is a great feature, it's just a new approach. You don't need to refactor your projects because of it. Probably class constructors and inject functions will be two options that'll coexist for a long time.
+
+But, in my opinion, inject function brings a much more clean approach to work with DI. It's straightforward and avoids lots of parameters on the constructor. 
+
+### That's all!
+
+I've spent some time writing this post, then, I hope that you enjoyed it!
+
+If you liked it, give some claps/likes to this post or support me in buying a coffee; it'll help me a lot! 👏🏼❤
+
+Thank you for the reading. 😄
+
+See you! 👋🏼
