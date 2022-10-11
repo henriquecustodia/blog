@@ -33,11 +33,11 @@ export class AppComponent {
 
 It's very simple to use, indeed.
 
-### Inject dependencies into functions
+### Inject dependencies into functions ![👻](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAATlBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAGBgYAAAAAAAAAAAD////wOhf29vYbGxvk3Nu1tbXMzMxUVFQ6OjqVlZVkZGR2dnaFhYX0bVP3mYebPYcQAAAACnRSTlMAPHsdVQmd98TjdPFd9wAAAtJJREFUWMPtmG2b7BAMhremqjiovs3s//+jpxhVGqWz+3HzaXst9xDJk/D19WcfWtsTdjBCe9TiDzgdA4x0ze31sIz1N1E9y1r3uAMyMzQPJpSeF+lItP0ByNkwOlehe1uTZxLXk0Whe86GSHy+SeqyJG1d1f4WiT5+vjmubRRUch4mQaTioFk/NfU7I5pnzJxdX8XBZkHPHMdtrqn1kBRZEB9rvWR2tuY5fDAHhysje3BTpBwOAP8lK/dGt3HCz5ABtH8tleFtnOmmhr+ir7nSSebwL0G6LgBwEaSMt38BJIQZUQY1AZRxtqgJyZayAMocv3Cl4EpNHm/hJ/zKhK8qWTlpfV28BAkPYrS5LGjLoHjBlC8FIKmx6xlV+GXIdpZFgWJp/TPHx32u3OH/TwYHJko4fIJAE09ILZir47n4/NuNpb9klamH4pBFXhbTGTRFgqegyDRytiRnM6WgSZ3FEmXl7LCmeSIBRKZZAGLZZ+UstgCC4gnQgTjTK0HiDMIONNjiTkJUwqDBeG9LYUBQ3qB3P3WosxBoeA/Kg/Z0DBH18pxXpExsH59KnEk0PeygXdCUB6m41jI/PvYRTlvQkFPfjvMdFrSaKrKPPxw/RnRrymPQQWLVtruXSpKw3ZvoENm4LyQnJJAP39ajJO1TWwu13100SNTDUwikP+hGzHmpJeaMFzKb7UepXcAYufpCtddsV9NZ34qDIEpdWBDKltZNQcS+u+mqipiVE3xxZ9gkRG9XFyKXgRfatWxz1BTce9yYSbMeX3b6aw1ouu4fMD0VCDimx1Lf74rsXMXpcfke+6zglG40bfHg3RWrfDNyJJnbnlgZq7xhOT8xCYWRmGWhtYLaNbkmGaLXt0h3lc8RGPmOTS6zVmLrkNQwj17q71zVH1327YCge68jTUcgDEW33iDcBpO3GvO+8tFbzTYHN6jrKbEPPh1qPqH82cn+A8zAdZmKYrnHAAAAAElFTkSuQmCC)
 
 I think the better part about this inject function is the possibility to create "smart functions" that can inject services doing the code easier to understand.
 
-Let's see an example of a function that injects the Renderer service and changes the CSS class of an HTML element.
+Let's see an example of a function that injects the **Renderer** service and changes the CSS class of an HTML element.
 
 ```ts
 export function createClassManager(el: HTMLElement, className: string) {
@@ -74,7 +74,9 @@ export class AppComponent {
 }
 ```
 
-Have you noticed? The **createClassManager** and **getHost** are using the inject function. That's a good way to abstract the code into functions. Before, we had services to help us to break into pieces our code. But now, we can use functions that are a very natural way to work in Javascript.
+Have you noticed? 
+
+The **createClassManager** and **getHost** are using the inject function. That's a good way to abstract the code into functions. Before, we had services to help us to break into pieces our code. But now, we can use functions that are a very natural way to work in Javascript.
 
 ### Where can we use this function?
 
@@ -110,7 +112,7 @@ providers: [
 ]	
 ```
 
-### Injection Flags
+### Injection Flags 🚩
 
 Another nice thing about the inject function is the new way we can use the injection flags. Before, injecting the provider by constructor class, we had to use decorators like **@Host** or **@Optional** to change an injection behavior. Now, with inject function, we just need to set some boolean flags using an options object as the second parameter.
 
@@ -135,6 +137,10 @@ Well, I don't think so.
 Although the inject function is a great feature, it's just a new approach. You don't need to refactor your projects because of it. Probably class constructors and inject functions will be two options that'll coexist for a long time.
 
 But, in my opinion, inject function brings a much more clean approach to work with DI. It's straightforward and avoids lots of parameters on the constructor. 
+
+### 👨‍💻
+
+You can check out the code of this post on my [GitHub](https://github.com/henriquecustodia/angular-inject-function-example).
 
 ### That's all!
 
