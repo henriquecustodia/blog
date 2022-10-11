@@ -3,8 +3,10 @@ permalink: posts/{{ title | slug }}/index.html
 title: 'Angular inject function: a new way to work with DI'
 date: 2022-10-10T03:00:00Z
 tags: []
-description: ''
-image: ''
+description: The new inject function released in Angular 14 give us a new way to work
+  with dependency injection. Now, we can inject dependencies inside functions and
+  a lot of more!
+image: "/images/uploads/mikhail-vasilyev-nodtncsldte-unsplash.jpg"
 
 ---
 It's time to talk about one of the best features in Angular 14: **inject function.**  I've been studying this new version for a while and I can say... Angular is getting better and better. Since the improvements in performance up to the developer's usability, it's becoming a great framework to work with.
