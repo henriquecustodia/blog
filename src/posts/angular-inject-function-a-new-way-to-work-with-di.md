@@ -21,15 +21,7 @@ Also, we can use this function to avoid injecting providers using the well-known
 
 The following example shows how to inject a service and use it in the component:
 
-```ts
-@Component({
-  ...
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class AppComponent {
-  changeDetectorRef = inject(ChangeDetectorRef);
-}
-```
+![](/images/uploads/app-component0-ts.png)
 
 It's very simple to use, indeed.
 
@@ -39,40 +31,9 @@ I think the better part about this inject function is the possibility to create 
 
 Let's see an example of a function that injects the **Renderer** service and changes the CSS class of an HTML element.
 
-```ts
-export function createClassManager(el: HTMLElement, className: string) {
-    const renderer = inject(Renderer2);
+![](/images/uploads/functions-ts.png)
 
-    return {
-        // add a class to element
-        add: () => renderer.addClass(el, className),
-        // remove a class from element
-        remove: () => renderer.removeClass(el, className),
-    };
-}   
-
-export function getHost<T>(): T {
-	return inject(ElementRef<T>).nativeElement;
-}
-```
-
-```ts
-@Component({
-  	...
-  	changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class AppComponent {
-	classManager = createClassManager(getHost(), 'red-color');
-
-  	setFontColorAsRed() {
-    	this.classManager.add();
-  	}
-
-  	removeFontColor() {
-    	this.classManager.remove();
-  	}
-}
-```
+![](/images/uploads/app-component1-ts.png)
 
 Have you noticed? 
 
@@ -86,47 +47,21 @@ Based on angular documentation:
 
 The inject function just works inside the injection context. We can call it when the instance is being created.
 
-```ts
-export class AppComponent {
-  	changeDetectorRef = inject(ChangeDetectorRef); // it works
-	
-	constructor() {
-  		const changeDetectorRef = inject(ChangeDetectorRef); // it works
-  	}
-    
-    ngOnInit() {
-   		const changeDetectorRef = inject(ChangeDetectorRef); // it throws an error
-    }
-}
-```
+![](/images/uploads/app-component2-ts.png)
 
-```ts
-providers: [
-	{
-		provide: GREETINGS, 
-    	useFactory: () => { 
-    		const userInfo = inject(UserInfo); // it works
-    		return `Hello, ${userInfo.name}!`.
-  		}
-    }
-]	
-```
+![](/images/uploads/factory-provider-ts-3.png)
 
 ### Injection Flags 🚩
 
 Another nice thing about the inject function is the new way we can use the injection flags. Before, injecting the provider by constructor class, we had to use decorators like **@Host** or **@Optional** to change an injection behavior. Now, with inject function, we just need to set some boolean flags using an options object as the second parameter.
 
-```ts
-const service = inject(MyOptionalService, { optional: true }); 
-```
+![](/images/uploads/inject-function-ts.png)
 
 it's much more simple, isn't it?
 
 Using the injection by constructor class we'd have to use the way:
 
-```ts
-contructor(@Optional private service MyOptionalService) { }
-```
+![](/images/uploads/constructor-ts.png)
 
 In my opinion, this new approach is much more simple to understand. Mainly, for those who are just starting to work with Angular.
 
@@ -134,7 +69,7 @@ In my opinion, this new approach is much more simple to understand. Mainly, for 
 
 Well, I don't think so. 
 
-Although the inject function is a great feature, it's just a new approach. You don't need to refactor your projects because of it. Probably class constructors and inject functions will be two options that'll coexist for a long time.
+Although the inject function is a great feature, it's just a new approach. We don't need to refactor the projects because of it. Probably class constructors and inject functions will be two options that'll coexist for a long time.
 
 But, in my opinion, inject function brings a much more clean approach to work with DI. It's straightforward and avoids lots of parameters on the constructor. 
 
