@@ -1,11 +1,11 @@
 ---
 permalink: posts/{{ title | slug }}/index.html
-title: 'Angular inject function: a new way to work with DI'
+title: 'Angular Inject Function: A New Way To Work With DI'
 date: 2022-10-10T21:00:00Z
 tags: []
-description: The new inject function released in Angular 14 give us a new way to work
-  with dependency injection. Now, we can inject dependencies inside functions and
-  a lot of more!
+description: The new inject function released in Angular 14 gives us a new way to
+  work with dependency injection. Now, we can inject dependencies inside functions
+  and a lot more!
 image: "/images/uploads/mikhail-vasilyev-nodtncsldte-unsplash.jpg"
 
 ---
