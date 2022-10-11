@@ -1,7 +1,7 @@
 ---
 permalink: posts/{{ title | slug }}/index.html
 title: 'Angular Inject Function: A New Way To Work With DI'
-date: 2022-10-10T21:00:00Z
+date: 2022-10-10T21:00:00.000+00:00
 tags: []
 description: The new inject function released in Angular 14 gives us a new way to
   work with dependency injection. Now, we can inject dependencies inside functions
@@ -27,7 +27,7 @@ The following example shows how to inject a service and use it in the component:
 
 It's very simple to use, indeed.
 
-### Inject dependencies into functions ![👻](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAMAAABiM0N1AAAATlBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAGBgYAAAAAAAAAAAD////wOhf29vYbGxvk3Nu1tbXMzMxUVFQ6OjqVlZVkZGR2dnaFhYX0bVP3mYebPYcQAAAACnRSTlMAPHsdVQmd98TjdPFd9wAAAtJJREFUWMPtmG2b7BAMhremqjiovs3s//+jpxhVGqWz+3HzaXst9xDJk/D19WcfWtsTdjBCe9TiDzgdA4x0ze31sIz1N1E9y1r3uAMyMzQPJpSeF+lItP0ByNkwOlehe1uTZxLXk0Whe86GSHy+SeqyJG1d1f4WiT5+vjmubRRUch4mQaTioFk/NfU7I5pnzJxdX8XBZkHPHMdtrqn1kBRZEB9rvWR2tuY5fDAHhysje3BTpBwOAP8lK/dGt3HCz5ABtH8tleFtnOmmhr+ir7nSSebwL0G6LgBwEaSMt38BJIQZUQY1AZRxtqgJyZayAMocv3Cl4EpNHm/hJ/zKhK8qWTlpfV28BAkPYrS5LGjLoHjBlC8FIKmx6xlV+GXIdpZFgWJp/TPHx32u3OH/TwYHJko4fIJAE09ILZir47n4/NuNpb9klamH4pBFXhbTGTRFgqegyDRytiRnM6WgSZ3FEmXl7LCmeSIBRKZZAGLZZ+UstgCC4gnQgTjTK0HiDMIONNjiTkJUwqDBeG9LYUBQ3qB3P3WosxBoeA/Kg/Z0DBH18pxXpExsH59KnEk0PeygXdCUB6m41jI/PvYRTlvQkFPfjvMdFrSaKrKPPxw/RnRrymPQQWLVtruXSpKw3ZvoENm4LyQnJJAP39ajJO1TWwu13100SNTDUwikP+hGzHmpJeaMFzKb7UepXcAYufpCtddsV9NZ34qDIEpdWBDKltZNQcS+u+mqipiVE3xxZ9gkRG9XFyKXgRfatWxz1BTce9yYSbMeX3b6aw1ouu4fMD0VCDimx1Lf74rsXMXpcfke+6zglG40bfHg3RWrfDNyJJnbnlgZq7xhOT8xCYWRmGWhtYLaNbkmGaLXt0h3lc8RGPmOTS6zVmLrkNQwj17q71zVH1327YCge68jTUcgDEW33iDcBpO3GvO+8tFbzTYHN6jrKbEPPh1qPqH82cn+A8zAdZmKYrnHAAAAAElFTkSuQmCC)
+### Inject dependencies into functions 👻
 
 I think the better part about this inject function is the possibility to create "smart functions" that can inject services doing the code easier to understand.
 
@@ -37,7 +37,7 @@ Let's see an example of a function that injects the **Renderer** service and cha
 
 ![](/images/uploads/app-component1-ts.png)
 
-Have you noticed? 
+Have you noticed?
 
 The **createClassManager** and **getHost** are using the inject function. That's a good way to abstract the code into functions. Before, we had services to help us to break into pieces our code. But now, we can use functions that are a very natural way to work in Javascript.
 
@@ -69,11 +69,11 @@ In my opinion, this new approach is much more simple to understand. Mainly, for 
 
 ### Should we stop to use class constructors with DI?
 
-Well, I don't think so. 
+Well, I don't think so.
 
 Although the inject function is a great feature, it's just a new approach. We don't need to refactor the projects because of it. Probably class constructors and inject functions will be two options that'll coexist for a long time.
 
-But, in my opinion, inject function brings a much more clean approach to work with DI. It's straightforward and avoids lots of parameters on the constructor. 
+But, in my opinion, inject function brings a much more clean approach to work with DI. It's straightforward and avoids lots of parameters on the constructor.
 
 ### 👨‍💻
 
