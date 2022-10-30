@@ -4,7 +4,7 @@ title: 'Angular 15: How to use the Directive Composition API'
 date: 2022-10-31T03:00:00Z
 tags: []
 description: ''
-image: ''
+image: "/images/uploads/bailey-zindel-nrqv-hbf10m-unsplash.jpg"
 
 ---
 Angular v15 will be released pretty soon, and it's coming with a very nice feature called **Directive Composition API**.
@@ -47,7 +47,7 @@ export class BoxDirective implements OnInit {
     wow
   `
 })
-export class AppComponent implements OnInit { }
+export class AppComponent { }
 ```
 
 The result will be: 
@@ -56,11 +56,9 @@ The result will be:
 
 We can use this new API to reuse a lot of code. It's really amazing.
 
-### Exposing Inputs and Outputs from the directive
+### Exposing the directive's input
 
-When adding Inputs and Outputs to a directive, we'll need to expose those ones to the component to be able use it.
-
-To do it, we have the **input** and **output** in the **hostDirectives** property. 
+When adding Inputs and Outputs to a directive, we need to expose those ones to the component to be able to use them. There are the **input** and **output** in the **hostDirectives** property because of it.  
 
 The following example adds an Input property to the BoxDirective. 
 
@@ -75,6 +73,8 @@ export class BoxDirective implements OnInit {
 }
 ```
 
+And we'll add the **color input** to the inputs array to expose it to the component.
+
 ```ts
 @Component({
   selector: 'app-root',
@@ -82,12 +82,44 @@ export class BoxDirective implements OnInit {
   hostDirectives: [
     { 
       directive: BoxDirective,
-      inputs: ['color']
+      inputs: ['color'] // <-- exposing the directive's input
     }
   ],
   template: `
     wow
   `
 })
-export class AppComponent implements OnInit { }
+export class AppComponent { }
+```
+
+That way we can set a color to the **BoxDirective**
+
+```ts
+<app-root color="green"></app-root>
+```
+
+The result will be:
+
+![](/images/uploads/result2.PNG)
+
+It's possible to rename the exposed input's name if it's needed
+
+```ts
+@Component({
+  ...
+  hostDirectives: [
+    { 
+      directive: BoxDirective,
+      inputs: ['color: customColor'] // <-- exposing the directive's input
+    }
+  ],
+  ...
+})
+export class AppComponent { }
+```
+
+Using the renamed property:
+
+```ts
+<app-root customColor="green"></app-root>
 ```
