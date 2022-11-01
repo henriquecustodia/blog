@@ -13,7 +13,7 @@ Angular v15 will be released pretty soon, and it's coming with a very nice featu
 
 The Directive Composition API allows us to compose directives into components and other directives.
 
-This API works only with standalone components (and standalone directives). As the 14 version added the standalone property, the 15 version adds a **hostDirectives** property. 
+This API works only with standalone components (and standalone directives). As the 14 version added the standalone property, the 15 version adds a **hostDirectives** property.
 
 Let's see how to use this property.
 
@@ -50,7 +50,7 @@ export class BoxDirective implements OnInit {
 export class AppComponent { }
 ```
 
-The result will be: 
+The result will be:
 
 ![](/images/uploads/result1.PNG)
 
@@ -58,9 +58,9 @@ We can use this new API to reuse a lot of code. It's really amazing.
 
 ### Exposing the directive's input
 
-When adding Inputs and Outputs to a directive, we need to expose those ones to the component to be able to use them. There are the **input** and **output** in the **hostDirectives** property because of it.  
+When adding Inputs and Outputs to a directive, we need to expose those ones to the component to be able to use them. There are the **input** and **output** in the **hostDirectives** property because of it.
 
-The following example adds an Input property to the BoxDirective. 
+The following example adds an Input property to the BoxDirective.
 
 ```ts
 @Directive({
@@ -102,7 +102,7 @@ The result will be:
 
 ![](/images/uploads/result2.PNG)
 
-It's possible to rename the exposed input's name if it's needed
+It's possible to rename the exposed input's name - generally useful when we have directives' inputs with the same name.
 
 ```ts
 @Component({
@@ -122,4 +122,41 @@ Using the renamed property:
 
 ```ts
 <app-root customColor="green"></app-root>
+```
+
+### Exposing the directive's output 
+
+We can expose outputs as easily as with inputs. But, for that purpose, there's a property called **outputs**.
+
+```ts
+@Directive({
+	...
+})
+export class BoxDirective implements OnInit {
+  ...
+  @Input() customEvent = new EventEmitter();
+  ...
+}
+```
+
+```ts
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  hostDirectives: [
+    { 
+      directive: BoxDirective,
+      ...
+      outputs: ['customEvent'] // <-- exposing the directive's output
+    }
+  ],
+  template: `
+    wow
+  `
+})
+export class AppComponent { }
+```
+
+```ts
+<app-root (customEvent)="green"></app-root>
 ```
