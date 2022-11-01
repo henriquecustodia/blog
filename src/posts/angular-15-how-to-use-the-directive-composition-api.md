@@ -4,7 +4,7 @@ title: 'Angular 15: How to use the Directive Composition API'
 date: 2022-10-31T03:00:00Z
 tags: []
 description: ''
-image: "/images/uploads/aron-yigin-sny6b9nspp8-unsplash-2.jpg"
+image: "/images/uploads/lucas-kapla-wqlagv4_oys-unsplash.jpg"
 
 ---
 Angular v15 will be released pretty soon, and it's coming with a very nice feature called **Directive Composition API**.
