@@ -1,7 +1,7 @@
 ---
 permalink: posts/{{ title | slug }}/index.html
-title: 'Angular 15: How to use the Directive Composition API'
-date: 2022-10-31T03:00:00Z
+title: 'Angular 15: Using The Directive Composition API'
+date: 2022-11-02T11:00:00Z
 tags: []
 description: 'The directive composition API is a new feature released in Angular 15.
   It allows us to reuse the directive''s code with components and even other directives. '
