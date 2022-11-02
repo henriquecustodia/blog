@@ -20,36 +20,9 @@ Let's see how to use this property.
 
 The example below shows a directive called **BoxDirective**, that sets some styles to the **AppComponent** using the **Composition API**:
 
-```ts
-@Directive({
-  selector: 'box',
-  standalone: true,
-})
-export class BoxDirective implements OnInit {
-  renderer = inject(Renderer2);
-  hostEl = inject(ElementRef).nativeElement;
-  
-  ngOnInit(): void {
-    this.renderer.setStyle(this.hostEl, 'color', 'red');
-    this.renderer.setStyle(this.hostEl, 'border', '1px solid black');
-    this.renderer.setStyle(this.hostEl, 'padding', '8px');
-  }
-}
-```
+![](/images/uploads/raycast-untitled.png)
 
-```ts
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  hostDirectives: [
-    RedColorDirective
-  ],
-  template: `
-    wow
-  `
-})
-export class AppComponent { }
-```
+![](/images/uploads/raycast-untitled-1.png)
 
 The result will be:
 
@@ -63,41 +36,15 @@ When adding Inputs and Outputs to a directive, we need to expose those to the co
 
 The following example adds an Input property to the BoxDirective.
 
-```ts
-@Directive({
-	...
-})
-export class BoxDirective implements OnInit {
-  ...
-  @Input() color = 'red';
-  ...
-}
-```
+![](/images/uploads/raycast-untitled-2.png)
 
 And we'll add the **color input** to the inputs array to expose it to the component.
 
-```ts
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  hostDirectives: [
-    { 
-      directive: BoxDirective,
-      inputs: ['color'] // <-- exposing the directive's input
-    }
-  ],
-  template: `
-    wow
-  `
-})
-export class AppComponent { }
-```
+![](/images/uploads/raycast-untitled-3.png)
 
 That way we can set a color to the **BoxDirective**
 
-```ts
-<app-root color="green"></app-root>
-```
+![](/images/uploads/raycast-untitled-4.png)
 
 The result will be:
 
@@ -105,84 +52,29 @@ The result will be:
 
 It's possible to rename the exposed input's name - generally useful when we have directives' inputs with the same name.
 
-```ts
-@Component({
-  ...
-  hostDirectives: [
-    { 
-      directive: BoxDirective,
-      inputs: ['color: customColor']
-    }
-  ],
-  ...
-})
-export class AppComponent { }
-```
+![](/images/uploads/raycast-untitled-5.png)
 
 Using the renamed property:
 
-```ts
-<app-root customColor="green"></app-root>
-```
+![](/images/uploads/raycast-untitled-6.png)
 
 ### Exposing the directive's output 
 
 To expose outputs as easily as with inputs. But there's a property called **outputs** specifically for it.
 
-```ts
-@Directive({
-	...
-})
-export class BoxDirective implements OnInit {
-  ...
-  @Input() customEvent = new EventEmitter();
-  ...
-}
-```
+![](/images/uploads/raycast-untitled-7.png)
 
-```ts
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  hostDirectives: [
-    { 
-      directive: BoxDirective,
-      ...
-      outputs: ['customEvent'] // exposing the directive's output
-    }
-  ],
-  template: `
-    wow
-  `
-})
-export class AppComponent { }
-```
+![](/images/uploads/raycast-untitled-8.png)
 
 Using it
 
-```ts
-<app-root (customEvent)="doSomething()"></app-root>
-```
+![](/images/uploads/raycast-untitled-9.png)
 
 In the same way as inputs, it's possible to rename the output's name.
 
-```ts
-@Component({
-  ...
-  hostDirectives: [
-    { 
-      directive: BoxDirective,
-      inputs: ['customEvent: renamedEvent']
-    }
-  ],
-  ...
-})
-export class AppComponent { }
-```
+![](/images/uploads/raycast-untitled-10.png)
 
-```ts
-<app-root (renamedEvent)="doSomething()"></app-root>
-```
+![](/images/uploads/raycast-untitled-11.png)
 
 ### Bonus: OnDestroyDirective 💎
 
@@ -190,56 +82,9 @@ Let's create a reusable directive to destroy old subscriptions.
 
 The following code creates a timer component that uses an interval operator to log an incremental number every second. To avoid memory leaks, it's a good practice to remove observable subscriptions when a component has been destroyed. The **OnDestroyDirective** will remove the interval subscription automatically after the timer component is destroyed.
 
-```ts
-@Directive({
-  selector: 'onDestroy',
-  standalone: true,
-})
-export class OnDestroyDirective implements OnDestroy {
-  private _destroy$ = new Subject();
+![](/images/uploads/raycast-untitled-12.png)
 
-  get destroy$() {
-    return this._destroy$.asObservable();
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next(true);
-    this._destroy$.complete();
-  }
-}
-```
-
-```ts
-@Component({
-  selector: 'app-timer',
-  standalone: true,
-  hostDirectives: [
-    {
-      directive: BoxDirective,
-      inputs: ['color'],
-    },
-    OnDestroyDirective, 
-  ],
-  template: `{{ timer }}`,
-})
-export class TimerComponent implements OnInit {
-  destroy$ = inject(OnDestroyDirective).destroy$;
-
-  timer: number = 0;
-
-  interval$ = interval(1000).pipe(
-    takeUntil(this.destroy$),
-    map((value) => value + 1),
-    tap((value) => console.log(`timer: ${value}`))
-  );
-
-  ngOnInit(): void {
-    this.interval$.subscribe((value) => {
-      this.timer = value;
-    });
-  }
-}
-```
+![](/images/uploads/raycast-untitled-13.png)
 
 The result will be:
 
