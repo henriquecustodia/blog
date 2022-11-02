@@ -13,7 +13,7 @@ Angular v15 will be released pretty soon, and it's coming with a very nice featu
 
 The Directive Composition API allows us to compose directives into components and other directives.
 
-This API works only with standalone components (and standalone directives). As the 14 version added the standalone property, the 15 version adds a **hostDirectives** property.
+This API works only with standalone components (and standalone directives). As the 14 version added the standalone property, the 15 version added a **hostDirectives** property.
 
 Let's see how to use this property.
 
@@ -110,7 +110,7 @@ It's possible to rename the exposed input's name - generally useful when we have
   hostDirectives: [
     { 
       directive: BoxDirective,
-      inputs: ['color: customColor'] // <-- exposing the directive's input
+      inputs: ['color: customColor']
     }
   ],
   ...
@@ -124,9 +124,9 @@ Using the renamed property:
 <app-root customColor="green"></app-root>
 ```
 
-### Exposing the directive's output 
+### Exposing the directive's output
 
-We can expose outputs as easily as with inputs. But, for that purpose, there's a property called **outputs**.
+To expose outputs as easily as with inputs. But there's a property called **outputs** specifically for it.
 
 ```ts
 @Directive({
@@ -147,7 +147,7 @@ export class BoxDirective implements OnInit {
     { 
       directive: BoxDirective,
       ...
-      outputs: ['customEvent'] // <-- exposing the directive's output
+      outputs: ['customEvent'] // exposing the directive's output
     }
   ],
   template: `
@@ -157,6 +157,103 @@ export class BoxDirective implements OnInit {
 export class AppComponent { }
 ```
 
+Using it 
+
 ```ts
-<app-root (customEvent)="green"></app-root>
+<app-root (customEvent)="doSomething()"></app-root>
 ```
+
+In the same way as inputs, it's possible to rename the output's name.
+
+```ts
+@Component({
+  ...
+  hostDirectives: [
+    { 
+      directive: BoxDirective,
+      inputs: ['customEvent: renamedEvent']
+    }
+  ],
+  ...
+})
+export class AppComponent { }
+```
+
+```ts
+<app-root (renamedEvent)="doSomething()"></app-root>
+```
+
+### Bonus: OnDestroyDirective
+
+Let's create a reusable directive to destroy old subscriptions. 
+
+The following code creates a timer component that uses an interval operator to log an incremental number every second. To avoid memory leaks, it's a good practice to remove observable subscriptions when a component has been destroyed. The **OnDestroyDirective** will remove the interval subscription automatically after the timer component is destroyed.
+
+```ts
+@Directive({
+  selector: 'onDestroy',
+  standalone: true,
+})
+export class OnDestroyDirective implements OnDestroy {
+  private _destroy$ = new Subject();
+
+  get destroy$() {
+    return this._destroy$.asObservable();
+  }
+
+  ngOnDestroy(): void {
+    this._destroy$.next(true);
+    this._destroy$.complete();
+  }
+}
+```
+
+```ts
+@Component({
+  selector: 'app-timer',
+  standalone: true,
+  hostDirectives: [
+    {
+      directive: BoxDirective,
+      inputs: ['color'],
+    },
+    OnDestroyDirective, 
+  ],
+  template: `{{ timer }}`,
+})
+export class TimerComponent implements OnInit {
+  destroy$ = inject(OnDestroyDirective).destroy$;
+
+  timer: number = 0;
+
+  interval$ = interval(1000).pipe(
+    takeUntil(this.destroy$),
+    map((value) => value + 1),
+    tap((value) => console.log(`timer: ${value}`))
+  );
+
+  ngOnInit(): void {
+    this.interval$.subscribe((value) => {
+      this.timer = value;
+    });
+  }
+}
+```
+
+The result will be: 
+
+![](/images/uploads/2022-11-01-23-32-47.gif)
+
+### 👨‍💻
+
+You can check out the code of this post [here](https://stackblitz.com/edit/ng-15-directive-composition-api?file=README.md).
+
+### That's all!
+
+I've spent some time writing this post, then, I hope that you enjoyed it!
+
+If you liked it, give some claps/likes to this post or share it with your friends! 
+
+Thank you for the reading. 😄
+
+See you! 👋🏼
