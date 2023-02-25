@@ -61,7 +61,7 @@ function myCustomFactoryOperator() {
 
 Now, let's see some examples of how to use custom operators to create more readable code!
 
-### Creating an operator to filter odd numbers
+## Creating an operator to filter odd numbers
 
 It's simple to filter odd numbers, isn't?  
 
@@ -93,4 +93,48 @@ interval(1000)
 // 4
 // 6
 // 8
+```
+
+## Creating an operator to search by text
+
+```ts
+import { filter, from, map, Observable } from "rxjs";
+
+const names = [
+    'Henrique',
+    'John',
+    'Mark',
+    'Bren',
+    'Iarg'
+];
+
+const toLowerCase =
+    () =>
+        (source: Observable<string>) =>
+            source
+                .pipe(
+                    map(value => value.toLocaleLowerCase())
+                );
+
+
+const searchByText =
+    (textArray: string[]) =>
+        (source: Observable<string>) =>
+            source
+                .pipe(
+                    toLowerCase(),
+                    filter(name => textArray.some((text: string) => name.includes(text)))
+                );
+
+from(names)
+    .pipe(
+        searchByText(['henrique', 'b'])
+    )
+    .subscribe(value => {
+        console.log(value)
+    });
+    
+// The result:
+// henrique
+// bren
 ```
