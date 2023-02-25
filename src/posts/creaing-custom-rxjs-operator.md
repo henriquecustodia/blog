@@ -84,7 +84,7 @@ interval(1000)
         take(5)
     )
     .subscribe(value => {
-        console.log(value)
+        console.log(value);
     });
     
 // The result
