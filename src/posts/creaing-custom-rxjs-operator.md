@@ -7,17 +7,17 @@ description: ''
 image: "/images/uploads/pawel-czerwinski-ywiowhvrbvu-unsplash.jpg"
 
 ---
-Since [Angular](https://angular.io/) has become a popular framework, RxJS is becoming increasingly popAny developer needs to understando use this fantastic library and its operators. 
+Since [Angular](https://angular.io/) has become a popular framework, RxJS is becoming increasingly popular. In this post I would like to write about a very nice feature in this fantastic library: **custom operators**!
 
-A few months ago I've been trying to keep the chaining logic more readable in my RxJS code. It's very easy to write confusing code when we don't pay attention to how the operators are being composed. 
+A few months ago I have been trying to keep the chaining logic more readable in my RxJS code. It's very easy to write confusing code when we don't pay attention to how the operators are being composed.
 
-That said, in this article, I want to show how to write a RxJS code using custom operators to keep the logic readable and easier to maintain over time.
+In this post, I would like to show how to write an RxJS code using custom operators to keep the logic readable and easier to maintain over time.
 
 ## How to create a custom operator?
 
 It's very easy, really!
 
-A RxJS operator is just a function that receives an [observable](https://rxjs.dev/guide/observable "observable") as a parameter and returns a new [observable](https://rxjs.dev/guide/observable "observable").   
+An RxJS operator is just a function that receives an [observable](https://rxjs.dev/guide/observable "observable") as a parameter and returns a new [observable](https://rxjs.dev/guide/observable "observable").
 
 For instance:
 
@@ -39,7 +39,7 @@ function myCustomOperator(source: Observable<T>) {
 
 Generally, it's common to create factory operators (operators that return another function), because it'll become more intuitive for the developers to understand the operators' chain.
 
-Here's an example of a factory operator: 
+Here's an example of a factory operator:
 
 ```ts
 function myCustomFactoryOperator() {
@@ -63,9 +63,9 @@ Now, let's see some examples of how to use custom operators to create more reada
 
 ## Creating an operator to filter odd numbers
 
-It's simple to filter odd numbers, isn't?  
+It's simple to filter odd numbers, isn't it?
 
-But creating a custom operator to name it'll become your code more clean and obvious. The readability will improve.
+But creating a custom operator to name it'll become your code cleaner and more obvious. The readability will improve.
 
 Let's see the code:
 
@@ -96,6 +96,39 @@ interval(1000)
 ```
 
 ## Creating an operator to search by text
+
+Searching by text into an array might be easy, but generally doing it with RxJS turns the code a bit hard to understand over time.
+
+But, before using a custom operator, let's see how the code would look when not using custom operators:
+
+```ts
+import { filter, from, map, Observable } from "rxjs";
+
+const names = [
+    'Henrique',
+    'John',
+    'Mark',
+    'Bren',
+    'Iarg'
+];
+
+const searchArray = ['henrique', 'b'];
+
+from(names)
+    .pipe(
+        map(value => value.toLocaleLowerCase()),
+        filter(value => searchArray.some((text: string) => value.includes(text)))
+    )
+    .subscribe(value => {
+        console.log(value)
+    });
+```
+
+It's not impossible to understand the code logic, but it's difficult to get what it's doing when taking a quick look.
+
+Because of that, naming the code logic is important. 
+
+That said, let's refactor the code above using custom operators: 
 
 ```ts
 import { filter, from, map, Observable } from "rxjs";
@@ -138,3 +171,13 @@ from(names)
 // henrique
 // bren
 ```
+
+`toLowerCase` and `searchByText` are operators that can be used to reuse the code, and it's much easier to understand what they're doing. 
+
+## Conclusion 
+
+Using custom operators can help us to make the code more readable and easier to reuse across the projects. 
+
+It was a quick post about custom operators. That feature is helping me a lot to enforce the reusability in my Angular projects. 
+
+Thank you for reading!  :)
