@@ -1,9 +1,12 @@
 ---
 permalink: posts/{{ title | slug }}/index.html
 title: Creating Custom RxJS Operators
-date: 2023-02-25T03:00:00Z
-tags: []
-description: ''
+date: 2023-02-26T19:00:00Z
+tags:
+- angular
+- rxjs
+description: Creating RxJS custom operators is critical for keeping the code organized
+  and readable, especially when using it with Angular.
 image: "/images/uploads/pawel-czerwinski-ywiowhvrbvu-unsplash.jpg"
 
 ---
@@ -65,4 +68,4 @@ Using custom operators can help us to make the code more readable and easier to 
 
 It was a quick post about custom operators. That feature is helping me a lot to enforce the reusability in my Angular projects. 
 
-Thank you for reading!  :)
+Thank you for reading!  ✨
