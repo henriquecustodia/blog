@@ -27,5 +27,6 @@ fields:
 pages:
 - src/posts/angular-15-how-to-use-the-directive-composition-api.md
 - src/posts/angular-inject-function-a-new-way-to-work-with-di.md
+- src/posts/creating-custom-rxjs-operator.md
 - src/posts/let-s-talk-about-standalone-components-in-angular.md
 - src/posts/micro-frontend-app-using-angular-module-federation.md
